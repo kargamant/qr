@@ -1,0 +1,27 @@
+{% extends 'interface/base.html' %}
+
+{% block title %}
+    Главная страница
+{% endblock %}
+
+{% block content %}
+    <style type="text/css">
+        h1{
+            display: block;
+            margin-block-start: 1.7em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+        button{
+            display: block;
+            margin-block-start: 3em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+    </style>
+
+    <h1>отсканируйте код с учебника</h1>
+    <button class="btn btn-outline-success" type="submit">сканировать QR код</button>
+{% endblock %}
