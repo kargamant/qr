@@ -9,11 +9,26 @@
         form{
             margin-top: 100px;
         }
+        button{
+            display: block;
+            margin-block-start: 8em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
     </style>
 
-    <form method="post">
-	    {% csrf_token %}
-	    {{ form.as_p }}
-	    <button> войти </button>
-    </form>
+
+
+    {% if user.is_authenticated %}
+        <button class="btn btn-outline-success" type="submit">добавить учебник</button>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="w-100 btn btn-lg btn-primary" type="submit">войти</button>
+        </form>
+    {% endif %}
+
+
 {% endblock %}

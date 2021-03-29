@@ -28,8 +28,13 @@
                         margin-right:30px;
                     }
                 </style>
+              {% if request.user.is_authenticated %}
+              <a href="/login">{{ user.username }}</a>
+              <a href="/logout">Выход</a>
+              {% else %}
               <a href="/register" id="reg">регистрация</a>
               <a href="/login">вход</a>
+              {% endif %}
             </div>
         </nav>
     </header>

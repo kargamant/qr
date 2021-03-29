@@ -22,5 +22,6 @@ urlpatterns = [
     path('', include(app_url)),
     path('books/', include(app_url)),
     path('login/', include(app_url)),
-    path('register/', include(app_url))
+    path('register/', include(app_url)),
+    path('logout/', include(app_url))
 ]

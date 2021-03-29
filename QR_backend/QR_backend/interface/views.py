@@ -35,5 +35,9 @@ def User_login(request):
             login(request, user)
             return redirect('/')
     else:
-        form = UserLoginForm()
-    return render(request, f'{app}lonin.html', {"form": form})
+        form = ' '
+    return render(request, f'{app}lonin.html', {'form': form})
+
+def user_logout(request):
+    logout(request)
+    return redirect('/')
