@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
+from .forms import UserLoginForm
+from django.contrib.auth import login, logout
 import time
 
 app = 'interface/'
@@ -26,5 +28,12 @@ def register(request):
     return render(request, f'{app}register.html', {'form': form})
 
 def User_login(request):
-    form = AuthenticationForm(request)
-    return render(request, f'{app}lonin.html', {'form': form})
+    if request.method == "POST":
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('/')
+    else:
+        form = UserLoginForm()
+    return render(request, f'{app}lonin.html', {"form": form})
