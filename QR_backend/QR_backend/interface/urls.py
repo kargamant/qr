@@ -7,5 +7,7 @@ urlpatterns = [
     path('books/', views.books, name='books'),
     path('register/', views.register, name='register'),
     path('login/', views.User_login, name='login'),
-    path('logout/', views.user_logout, name='logout')
+    path('logout/', views.user_logout, name='logout'),
+    #возможно нужно добавить доп кнопку с addbook
+    path('add_book/', views.add_book, name='add_book')
 ]

@@ -23,12 +23,15 @@
             margin-inline-start: 0px;
             margin-inline-end: 0px;
         }
+        h1{
+            margin-top: 100px;
+        }
     </style>
 
 
 
     {% if user.is_authenticated %}
-        <button class="btn btn-outline-success" type="submit" id="add_book">добавить учебник</button>
+    <h1>место для формы</h1>
     {% else %}
         <form method="post">
             {% csrf_token %}

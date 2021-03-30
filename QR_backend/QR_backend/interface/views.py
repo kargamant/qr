@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
-from .forms import UserLoginForm
+from .forms import UserLoginForm, BookForm
 from django.contrib.auth import login, logout
 import time
+import pyqrcode
 
 app = 'interface/'
 # Create your views here.
@@ -41,3 +42,10 @@ def User_login(request):
 def user_logout(request):
     logout(request)
     return redirect('/')
+
+def add_book(request):
+    if request.method == "POST":
+        pass
+    else:
+        form = BookForm()
+    return render(request, f'{app}add_book.html', {'form':form})
