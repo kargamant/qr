@@ -19,4 +19,4 @@ class UserRegisterForm(UserCreationForm):
 class BookForm(forms.Form):
 	title = forms.CharField(label='название учебника', max_length=150)
 	link = forms.URLField(label='ссылка на учебник')
-	photo = forms.ImageField(label='изображение учебника')
+	#photo = forms.ImageField(label='изображение учебника')

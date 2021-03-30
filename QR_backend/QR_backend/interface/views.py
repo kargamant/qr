@@ -45,7 +45,15 @@ def user_logout(request):
 
 def add_book(request):
     if request.method == "POST":
-        pass
+        form = BookForm(request.POST)
+        if form.is_valid():
+            qr = pyqrcode.create(form.cleaned_data['link'])
+            image = f'media/qr_code_{form.cleaned_data["title"]}.png'
+            qr.png(image, scale=8)
+            print(image)
+            return render(request, f'{app}qr.html', {'image':image})
+        else:
+            messages.error(request, 'Ошибка')
     else:
         form = BookForm()
     return render(request, f'{app}add_book.html', {'form':form})
