@@ -60,7 +60,7 @@ def add_book(request):
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             qr = pyqrcode.create(form.cleaned_data['link'])
-            image = f'media/qr_code_{form.cleaned_data["title"]}.png'
+            image = f'C:/Users/Дмитрий/Pictures/qr_codes/qr_code_{form.cleaned_data["title"]}.png'
             qr.png(image, scale=8)
 
             photo = form.cleaned_data['photo']
