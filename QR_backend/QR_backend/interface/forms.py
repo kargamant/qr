@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.forms import User
 from django import forms
+from .models import Book
 
 
 class UserLoginForm(AuthenticationForm):
@@ -16,7 +17,16 @@ class UserRegisterForm(UserCreationForm):
 		model = User
 		fields = ('username', 'email', 'password1', 'password2')
 
-class BookForm(forms.Form):
-	title = forms.CharField(label='название учебника', max_length=150)
-	link = forms.URLField(label='ссылка на учебник')
-	#photo = forms.ImageField(label='изображение учебника')
+class BookForm(forms.ModelForm):
+	class Meta:
+		model = Book
+		fields = ['title', 'link', 'photo']
+		widgets = {
+			'title': forms.TextInput(attrs={'class':'form-control'}),
+			'link': forms.TextInput(attrs={'class':'form-control'})
+		}
+
+class ScanForm(forms.ModelForm):
+	class Meta:
+		model = Book
+		fields = ['qr']

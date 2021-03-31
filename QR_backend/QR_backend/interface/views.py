@@ -1,18 +1,30 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
-from .forms import UserLoginForm, BookForm
+from .forms import UserLoginForm, BookForm, ScanForm
 from django.contrib.auth import login, logout
 import time
 import pyqrcode
+from .models import Book
+from pyzbar.pyzbar import decode
+from PIL import Image
+import webbrowser
 
 app = 'interface/'
 # Create your views here.
 def index(request):
-    return render(request, f'{app}index.html')
+    if request.method == 'POST':
+        form = ScanForm(request.POST, request.FILES)
+        if form.is_valid():
+            d = decode(Image.open(form.cleaned_data['qr']))
+            return redirect(d[0].data.decode('ascii'))
+    else:
+        form = ScanForm()
+        messages.error(request, 'возникла ошибка')
+    return render(request, f'{app}index.html', {'form': form})
 
 def books(request):
-    return render(request, f'{app}books.html')
+    return render(request, f'{app}books.html', {'Book': Book})
 
 def register(request):
     if request.method == 'POST':
@@ -45,13 +57,17 @@ def user_logout(request):
 
 def add_book(request):
     if request.method == "POST":
-        form = BookForm(request.POST)
+        form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             qr = pyqrcode.create(form.cleaned_data['link'])
             image = f'media/qr_code_{form.cleaned_data["title"]}.png'
             qr.png(image, scale=8)
-            print(image)
-            return render(request, f'{app}qr.html', {'image':image})
+
+            photo = form.cleaned_data['photo']
+            title = form.cleaned_data['title']
+            link = form.cleaned_data['link']
+            Book.objects.create(title=title, link=link, photo=photo, qr=image)
+            return redirect('/')
         else:
             messages.error(request, 'Ошибка')
     else:
