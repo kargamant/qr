@@ -1,0 +1,11 @@
+{% extends 'interface/base.html' %}
+
+{% block title %}
+    Личный кабинет
+{% endblock %}
+
+{% block content %}
+    <h1>Ваш профиль</h1>
+    <h4>Имя</h4>
+    {{ request.user }}
+{% endblock %}

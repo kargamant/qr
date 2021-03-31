@@ -24,5 +24,6 @@ urlpatterns = [
     path('login/', include(app_url)),
     path('register/', include(app_url)),
     path('logout/', include(app_url)),
-    path('add_book/', include(app_url))
+    path('add_book/', include(app_url)),
+    path('yourlib/', include(app_url))
 ]

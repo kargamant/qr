@@ -46,7 +46,7 @@ def User_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('/')
+            return redirect('/yourlib')
     else:
         form = UserLoginForm()
     return render(request, f'{app}lonin.html', {'form': form})
@@ -73,3 +73,7 @@ def add_book(request):
     else:
         form = BookForm()
     return render(request, f'{app}add_book.html', {'form':form})
+
+def lib(request):
+    print(request.user)
+    return render(request, f'{app}personal_lib.html')

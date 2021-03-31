@@ -9,5 +9,6 @@ urlpatterns = [
     path('login/', views.User_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     #возможно нужно добавить доп кнопку с addbook
-    path('add_book/', views.add_book, name='add_book')
+    path('add_book/', views.add_book, name='add_book'),
+    path('yourlib/', views.lib, name='yourlib')
 ]
