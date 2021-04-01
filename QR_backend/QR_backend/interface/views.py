@@ -77,4 +77,5 @@ def add_book(request):
     return render(request, f'{app}add_book.html', {'form':form})
 
 def lib(request):
-    return render(request, f'{app}personal_lib.html')
+    book_items = Book.objects.all()
+    return render(request, f'{app}personal_lib.html', {'book_items': book_items})

@@ -17,21 +17,6 @@
         }
     </style>
 
-    {% comment block %}
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == 'error' %}
-                <div class="alert alert-danger" role="alert" id="message">
-                    {{ message }}
-                </div>
-            {% else %}
-                <div class="alert alert-{{ message.tags }}" role="alert" id="message1">
-                    {{ message }}
-                </div>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-    {% endblock %}
     <form method="post">
 	    {% csrf_token %}
 	    {{ form.as_p }}
