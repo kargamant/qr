@@ -26,6 +26,7 @@
     <h1>учебники</h1>
     {% if request.user.is_authenticated %}
         <a href="/add_book">Добавить учебник</a>
+        <img src="/static/qr_code_Геометрия 10 класс.png" alt="">
     {% else %}
         <a href="/login">Добавить учебник</a>
     {% endif %}
