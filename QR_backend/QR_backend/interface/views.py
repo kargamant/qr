@@ -62,14 +62,14 @@ def add_book(request):
         if form.is_valid():
             qr = pyqrcode.create(form.cleaned_data['link'])
             dirname = os.getcwd()
-            image = 'qr_codes/qr_code_{form.cleaned_data["title"]}.png'
+            image = f'static/qr_code_{form.cleaned_data["title"]}.png'
             qr.png(image, scale=8)
 
             photo = form.cleaned_data['photo']
             title = form.cleaned_data['title']
             link = form.cleaned_data['link']
             Book.objects.create(title=title, link=link, photo=photo, qr=image)
-            return redirect('/')
+            return render(request, f'{app}qr.html', {'image': image})
         else:
             messages.error(request, 'Ошибка')
     else:
