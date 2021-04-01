@@ -62,7 +62,7 @@ def add_book(request):
         if form.is_valid():
             qr = pyqrcode.create(form.cleaned_data['link'])
             dirname = os.getcwd()
-            image = f'static/qr_code_{form.cleaned_data["title"]}.png'
+            image = f'static/qr_codes/qr_code_{form.cleaned_data["title"]}.png'
             qr.png(image, scale=8)
 
             photo = form.cleaned_data['photo']
@@ -77,5 +77,4 @@ def add_book(request):
     return render(request, f'{app}add_book.html', {'form':form})
 
 def lib(request):
-    print(request.user)
     return render(request, f'{app}personal_lib.html')

@@ -31,7 +31,9 @@
 
 
     {% if user.is_authenticated %}
-    <h1>место для формы</h1>
+        <h1>Ваш профиль</h1>
+        <h4>Имя</h4>
+        {{ request.user }}
     {% else %}
         <form method="post">
             {% csrf_token %}
