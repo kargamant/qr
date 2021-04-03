@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from QR_backend.QR_backend import settings
 
 app_url = 'interface.urls'
 urlpatterns = [
@@ -26,4 +28,4 @@ urlpatterns = [
     path('logout/', include(app_url)),
     path('add_book/', include(app_url)),
     path('yourlib/', include(app_url))
-]
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
