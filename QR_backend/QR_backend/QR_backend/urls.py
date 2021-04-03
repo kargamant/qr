@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
-from QR_backend.QR_backend import settings
+from . import settings
 
 app_url = 'interface.urls'
 urlpatterns = [
